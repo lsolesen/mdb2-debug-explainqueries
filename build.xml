@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<project name="VIH" basedir="." default="pear-create">
+    <property file="${project.basedir}/build.properties" />
+    <property name="package-version" value="0.1.1" override="true" />
+
+    <target name="pear-packagexml-create">
+        <exec dir="${project.basedir}" checkreturn="true" command="php makepackagexml.php make ${package-version}" />
+    </target>
+
+    <target name="pear-create">
+        <phingcall target="pear-packagexml-create" />
+        <exec dir="${project.basedir}/src/" checkreturn="true" command="pear package package.xml" />
+        <move file="${project.basedir}/src/package.xml" tofile="${project.basedir}/package.xml" overwrite="true" />
+        <delete file="${project.basedir}/src/package.xml" />
+        <copy todir="${project.basedir}" >
+          <fileset dir="${project.basedir}/src/">
+            <include name="*.tgz" />
+            </fileset>
+        </copy>
+        <delete>
+          <fileset dir="${project.basedir}/src/">
+            <include name="*.tgz" />
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="deploy">
+        <exec dir="${project.basedir}" checkreturn="true" command="php deploy.php ${pear.username} ${pear.password} MDB2_Debug_ExplainQueries-${package-version}.tgz" />
+    </target>
+
+
+    <target name="docs">
+        <delete dir="${project.basedir}/apidocs" />
+        <mkdir dir="${project.basedir}/apidocs" />
+        <echo msg="Creating documentation" />
+        <phpdoc title="VIH Intranet API docs"
+            destdir="${project.basedir}/apidocs"
+            sourcecode="${project.basedir}/src/vih/"
+            output="HTML:frames:DOM/earthli"
+        >
+
+            <fileset dir="${project.basedir}/src/vih/">
+                <include name="**" />
+            </fileset>
+        </phpdoc>
+    </target>
+
+    <target name="test">
+        <phpunit haltonerror="true" haltonfailure="true" printsummary="true">
+            <batchtest>
+                <fileset dir="./tests/">
+                    <include name="*/*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+</project>

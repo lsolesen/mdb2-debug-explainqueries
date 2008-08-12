@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.6.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>MDB2_Debug_ExplainQueries</name>
+ <channel>public.intraface.dk</channel>
+ <summary>Times the execution of queries and EXPLAINs</summary>
+ <description>Times and EXPLAINS queries with MDB2.</description>
+ <lead>
+  <name>Lars Olesen</name>
+  <user>lsolesen</user>
+  <email>lars@legestue.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2007-11-14</date>
+ <time>23:31:56</time>
+ <version>
+  <release>0.1.1</release>
+  <api>0.1.1</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD license</license>
+ <notes>* initial release as PEAR</notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="MDB2">
+    <dir name="Debug">
+     <file name="ExplainQueries.php" role="php" />
+    </dir> <!-- //MDB2/Debug -->
+   </dir> <!-- //MDB2 -->
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.0</min>
+   </pearinstaller>
+   <package>
+    <name>MDB2</name>
+    <channel>pear.php.net</channel>
+    <min>0.18.0</min>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.1</release>
+    <api>0.1.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2007-11-14</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD license</license>
+   <notes>* initial release as PEAR</notes>
+  </release>
+ </changelog>
+</package>
